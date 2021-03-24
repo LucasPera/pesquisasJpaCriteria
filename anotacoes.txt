@@ -1,0 +1,12 @@
+
+@OneToMany(mappedBy = "conta") 
+private List<Movimentacao> movimentacoes;
+
+: diz que o relacionamento ocorre no atributo conta de movimentações.
+para não ocorrer dois relacionamentos e sim um relacionamento bi-direcional
+
+todo relacionamento @OneToMany é carregado com lazy loading (carregamento preguiçoso), são carregados conforme for utilizados (não carrega antecipadamente) 
+
+@OneToMany(mappedBy = "conta", fetch = FetchType.EAGER): para carregar antecipadamente
+
+para resolver problema do n + 1: String jpql = "select c from Conta c left join fetch c.movimentacoes";
